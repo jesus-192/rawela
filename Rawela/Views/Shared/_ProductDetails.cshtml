@@ -1,0 +1,165 @@
+﻿@model Rawela.Models.Product
+@{
+    ViewBag.Title = "Detalle";
+    Layout = "~/Views/Shared/_LayoutNoImage.cshtml";
+}
+<style>
+    .detail {
+        padding-top: 5%;
+    }
+
+    #img {
+        width: 60%;
+        height: 400px;
+    }
+
+    .star-primary {
+        width: 100%;
+    }
+
+    h2 {
+        /*align-content:center;*/
+    }
+    /* Makes images fully responsive */
+
+    .img-responsive,
+    .thumbnail > img,
+    .thumbnail a > img,
+    .carousel-inner > .item > img,
+    .carousel-inner > .item > a > img {
+        display: block;
+        width: 100%;
+        height: 600px;
+    }
+
+    /* ------------------- Carousel Styling ------------------- */
+
+    .carousel-inner {
+        border-radius: 15px;
+    }
+
+    .carousel-caption {
+        background-color: rgba(0,0,0,.5);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        padding: 0 0 10px 25px;
+        color: #fff;
+        text-align: left;
+    }
+
+    .carousel-indicators {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        z-index: 15;
+        margin: 0;
+        padding: 0 25px 25px 0;
+        text-align: right;
+    }
+
+    .carousel-control.left,
+    .carousel-control.right {
+        background-image: none;
+    }
+
+
+    /* ------------------- Section Styling - Not needed for carousel styling ------------------- */
+
+    .section-white {
+        padding: 10px 0;
+    }
+
+    .section-white {
+        background-color: #fff;
+        color: #555;
+    }
+</style>
+
+<div class="detail">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <div class="modal-body" style="text-align:center">
+                @*@foreach (var product in Model)
+                    {*@
+                <h2 class="">@Model.Title</h2>
+                <hr class="star-primary">
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators-->
+                    @*<ol class="carousel-indicators">
+                            @for (var i = 0; i < Model.ItemImages.Count; i++)
+                            {
+                                if (i.ImageId == Model.ItemImages.FirstOrDefault().ImageId)
+                                {
+                                <li data-target="#carousel-example-generic" data-slide-to="@i"></li>
+                                }
+                                else
+                                {
+
+                                }
+                            }
+                        </ol>*@
+                    <div class="carousel-inner">
+
+                        @foreach (var img in Model.ItemImages)
+                        {
+                            if (img.ImageId == Model.ItemImages.FirstOrDefault().ImageId)
+                            {
+                                <div class="item active">
+                                    <img src="~/Content/Photo/@img.Name" class="img-responsive" alt="...">
+                                    @*<div class="carousel-caption">
+                                            <h2>Heading</h2>
+                                        </div>*@
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="item">
+                                    <img src="~/Content/Photo/@img.Name" class="img-responsive" alt="...">
+                                </div>
+
+                            }
+
+                        }
+                    </div>
+
+
+                    <!-- Wrapper for slides -->
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+                <br />
+                <p class="">@Model.description </p>
+
+                <ul class="list-inline item-details">
+                    <li>
+                        Elaborado por:
+                        <strong>Rawela</strong>
+                    </li>
+                    <li>
+                        Fecha:
+                        <strong>2016</strong>
+                    </li>
+                    <li>
+                        Servicio:
+                        <strong>@Model.Categoria</strong>
+                    </li>
+                </ul>
+                @Html.ActionLink("Regresar", "Products", "home", routeValues: null, htmlAttributes: new { @class = "btn btn-default" })
+                @*<button type="button" class="btn btn-default col-md-offset-5"  data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Regresar</button>*@
+
+                @*}*@
+            </div>
+        </div>
+    </div>
+</div>

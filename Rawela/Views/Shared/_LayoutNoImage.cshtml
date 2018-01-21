@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @{
+        var IsAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    }
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rawela @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/freelancer.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome/font-awesome.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="~/Content/img/logo.png" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <style>
+        header{
+            background-color:#16667d;      
+        }
+        #img{
+            width:360px;
+            height:260px;
+        }
+       
+        </style>
+   
+</head>
+<body id="page-top" class="index">
+    
+    @*<div class="container body-content">*@
+        <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+        <!-- Navigation -->
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only"></span><i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/home/index">@*<img src="~/Content/img/logo.png" width="60" height="60" style="padding-top:1%" />*@Rawela</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/home/index">Home</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="/home/products">Productos</a>
+                        </li>
+                        @*<li class="page-scroll">
+                            <a href="#about">Nosotros</a>
+                        </li>*@
+                        <li class="page-scroll">
+                            <a href="/Contact/Index" >Contacto</a>
+                        </li>
+                        @if (IsAuthenticated)
+                        {
+                            <li class="page-scroll">
+                                <a href="/Products/Index">Agregar nuevo producto</a>
+                            </li>
+                        }
+                        @if (IsAuthenticated)
+                        {
+                            <li class="page-scroll" >
+                                <form method="post" action="/account/logoff">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" formmethod="post" class="btn btn-default" style="background-color:#2c3e50; color:white; " value="Cerrar Sesión"/>
+                                </form>
+                                @*<a id="logoff" >Cerrar Sesión</a>*@
+                                
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+        <!-- Header -->
+        <header>
+            @*<div class="container" id="maincontent" tabindex="-1">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <img class="img-responsive" src="~/Content/img/rawela_slider.jpg" height="100" width="600" alt="">
+                        <div class="intro-text">
+                            <h1 class="name"></h1>
+                            <span class="skills"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        </header>
+        @RenderBody()
+    @*@Html.Partial("_footer")*@
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Barra</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/barra.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Juguetero en forma de lego</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/juguetero lego.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Porta Lápiz en forma de elefante</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/porta lapiz.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Repisa forma de avión</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/repisa avion.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Juego de repisa con espejo</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/repisa con espejo.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>Silla de conejo</h2>
+                            <hr class="star-primary">
+                            <img src="~/Content/img/portafolio/silla conejo.jpg" class="img-responsive img-centered" alt="">
+                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by </p>
+                            <ul class="list-inline item-details">
+                                <li>
+                                    Elaborado por:
+                                    <strong>Rawela</strong>
+                                </li>
+                                <li>
+                                    Fecha:
+                                    <strong>2016</strong>
+                                </li>
+                                <li>
+                                    Servicio:
+                                    <strong>Carpinteria</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="glyphicon glyphicon-remove"></i> Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*</div>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="~/Scripts/jqBootstrapValidation.js"></script>
+    @*<script src="~/Scripts/contact_me.js"></script>*@
+    <script src="~/Scripts/freelancer.min.js"></script>
+    @*<script>
+        $("#logoff").click(function () {
+            $.ajax({
+                method: "POST",
+                url: "/Account/LogOff"
+            }).done(function () {
+                console.info("done");
+            });
+        });
+    </script>*@
+</body>
+</html>

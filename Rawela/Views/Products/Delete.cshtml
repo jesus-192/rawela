@@ -1,0 +1,59 @@
+﻿@model Rawela.Models.Product
+
+@{
+    var IsAuthenticated = HttpContext.Current.User.Identity.IsAuthenticated;
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutNoImage.cshtml";
+}
+
+@if (IsAuthenticated)
+{
+
+
+<div class="col-md-offset-3">
+    <h3 style="padding-top:5%">¿Seguro que quiere eliminar este producto?</h3>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.file)
+        </dt>
+
+        <dd>
+            <img src="~/Content/Image/@Model.file" width="200" height="200"/>
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+        <br />
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color" style="padding-left:13%">
+            @Html.ActionLink("Regresar", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-warning" })
+            <input type="submit" value="Delete" class="btn btn-success" /> 
+        </div>
+    }
+</div>
+}
